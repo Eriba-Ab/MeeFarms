@@ -30,6 +30,8 @@ Scroll down to the **Environment Variables** section and add everything from you
    - `RESEND_API_KEY`
    - *(Any other required keys)*
 
+mongodb+srv://MeeFarms:uUKZcuuNiyzfrI7X@cluster0.ujjdxvq.mongodb.net/?appName=Cluster0
+
 ### Step 1.3: Add a Persistent Disk (Crucial for Image Uploads)
 Since your app uses `multer` to save uploaded product images locally:
 1. Scroll down to the **Advanced** section in your Render Web Service settings.
