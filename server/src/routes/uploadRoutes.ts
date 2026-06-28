@@ -12,8 +12,8 @@ router.post('/', protect, admin, upload.single('image'), (req: Request, res: Res
             return;
         }
 
-        // Return the file path that can be used to access the image
-        const filePath = `/uploads/products/${req.file.filename}`;
+        // Return the secure Cloudinary file URL
+        const filePath = req.file.path;
         res.status(200).json({
             message: 'Image uploaded successfully',
             filePath: filePath

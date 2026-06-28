@@ -1,35 +1,25 @@
 import multer from 'multer';
-import path from 'path';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import cloudinary from '../config/cloudinary';
 import { Request } from 'express';
+import path from 'path';
 
-// Configure storage
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/products/');
-    },
-    filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, 'product-' + uniqueSuffix + path.extname(file.originalname));
-    }
+// Configure Cloudinary storage
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'meefarms/products',
+        allowed_formats: ['jpeg', 'jpg', 'png', 'webp', 'gif'],
+        public_id: (req: Request, file: Express.Multer.File) => {
+            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+            return 'product-' + uniqueSuffix;
+        }
+    } as any,
 });
-
-// File filter to accept only images
-const fileFilter = (req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
-    const allowedTypes = /jpeg|jpg|png|webp|gif/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = allowedTypes.test(file.mimetype);
-
-    if (extname && mimetype) {
-        cb(null, true);
-    } else {
-        cb(new Error('Only image files are allowed (jpeg, jpg, png, webp, gif)'));
-    }
-};
 
 // Configure multer
 export const upload = multer({
     storage: storage,
-    fileFilter: fileFilter,
     limits: {
         fileSize: 5 * 1024 * 1024 // 5MB limit
     }
