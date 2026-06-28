@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 48 30% 97%;
+    --foreground: 85 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 85 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 85 25% 12%;
+
+    --primary: 85 38% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 46 88% 57%;
+    --secondary-foreground: 85 25% 12%;
+
+    --muted: 48 20% 93%;
+    --muted-foreground: 85 12% 45%;
+
+    --accent: 85 38% 28%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 48 15% 88%;
+    --input: 48 15% 88%;
+    --ring: 85 38% 35%;
+
+    --radius: 0.5rem;
+
+    --farm-green: 85 38% 35%;
+    --farm-yellow: 46 88% 57%;
+    --farm-dark: 40 25% 10%;
+    --farm-earth: 35 30% 18%;
+    --farm-cream: 48 30% 97%;
+    --farm-neutral: 48 15% 93%;
+
+    --success: 151 55% 41%;
+    --warning: 46 88% 57%;
+    --primary-darker: 85 38% 25%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.92), hsl(var(--farm-earth) / 0.85));
+    --gradient-warm: linear-gradient(135deg, hsl(var(--secondary)), hsl(46 88% 70%));
+    --gradient-dark: linear-gradient(135deg, hsl(var(--farm-dark)), hsl(var(--farm-earth)));
+
+    --shadow-farm: 0 10px 40px -10px hsl(var(--primary) / 0.25);
+    --shadow-soft: 0 4px 24px -8px hsl(0 0% 0% / 0.12);
+    --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 40 25% 8%;
+    --foreground: 48 20% 92%;
+
+    --card: 40 22% 11%;
+    --card-foreground: 48 20% 92%;
+
+    --popover: 40 22% 11%;
+    --popover-foreground: 48 20% 92%;
+
+    --primary: 85 42% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 46 80% 52%;
+    --secondary-foreground: 85 25% 10%;
+
+    --muted: 40 18% 16%;
+    --muted-foreground: 48 10% 58%;
+
+    --accent: 85 38% 32%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 151 55% 41%;
+    --warning: 46 88% 57%;
+    --primary-darker: 85 38% 20%;
+
+    --border: 40 18% 20%;
+    --input: 40 18% 20%;
+    --ring: 85 42% 42%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "kern" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .farm-dark {
+    background-color: hsl(var(--farm-dark));
+  }
+  .farm-earth {
+    background-color: hsl(var(--farm-earth));
+  }
+}
+
+/* Marquee */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee-scroll 28s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Fade-up entrance */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.65s ease forwards;
+}
+.animate-fade-up-delay-1 {
+  animation: fade-up 0.65s 0.1s ease both;
+}
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.65s 0.22s ease both;
+}
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.65s 0.34s ease both;
+}
+.animate-fade-up-delay-4 {
+  animation: fade-up 0.65s 0.46s ease both;
+}
+
+/* Scroll-triggered fade-up via IntersectionObserver class */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating dot animation */
+@keyframes float-dot {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float-dot 3s ease-in-out infinite;
+}
+
+/* Mobile nav drop-fade */
+@keyframes drop-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-drop-fade {
+  animation: drop-fade-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Grain texture overlay */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.35;
+}

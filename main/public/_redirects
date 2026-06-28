@@ -1,0 +1,8 @@
+# Proxy API requests to Render Backend
+/api/*  https://<YOUR-RENDER-URL>.onrender.com/api/:splat  200
+
+# Proxy uploads to Render Backend
+/uploads/*  https://<YOUR-RENDER-URL>.onrender.com/uploads/:splat  200
+
+# React Router SPA Fallback
+/*  /index.html  200
