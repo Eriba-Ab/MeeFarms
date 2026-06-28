@@ -11,11 +11,11 @@ export default defineConfig(({ mode }) => ({
     allowedHosts: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'https://meefarms-api.onrender.com',
         changeOrigin: true,
       },
       '/uploads': {
-        target: 'http://localhost:3001',
+        target: 'https://meefarms-api.onrender.com',
         changeOrigin: true,
       },
     },
