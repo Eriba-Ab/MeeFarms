@@ -35,7 +35,7 @@ export const register = async (req: Request, res: Response) => {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
-            token: generateToken(user._id as string)
+            token: generateToken(String(user._id))
         });
     } catch (error) {
         res.status(500).json({ message: 'Server Error' });
@@ -61,7 +61,7 @@ export const login = async (req: Request, res: Response) => {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
-            token: generateToken(user._id as string)
+            token: generateToken(String(user._id))
         });
     } catch (error) {
         res.status(500).json({ message: 'Server Error' });
